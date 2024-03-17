@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infomations Product</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="index.css">
+    <style>
+        h1 {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+    <h1>Infomations Product</h1>
+    <div class="row justify-content-center">
+
+        <div class="col-md-6">
+            <div class="content">
+                <form action="/save" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="product_id" id="product_id" placeholder="Enter product ID" />
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="product_name" id="product_name" placeholder="Enter product Name" />
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="quantity" id="quantity" placeholder="Enter quantity" />
+                    </div>
+                    <div class="form-group">
+                        <input type="file" class="form-control-file" name="image" id="image" accept="image/*" />
+                    </div>
+                    <input type="submit" class="btn btn-primary" value="Add" />
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form action="/delete" method="post" enctype="multipart/form-data">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Product ID</th>
+                        <th>Product Name</th>
+                        <th>Quantity</th>
+                        <th>Image</th>
+                        <th>Choose</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <% for(let i=0; i< data.length; i++){ %>
+                        <tr>
+                            <td><%= data[i].product_id %></td>
+                            <td><%= data[i].product_name %></td>
+                            <td><%= data[i].quantity %></td>
+                            <td><img src="<%= data[i].image %>" alt="avt_<%= data[i].product_id %>" width="48" height="48" /></td>
+                            <td>
+                                <input type="checkbox" name="<%= data[i].product_id %>" id="<%= data[i].product_id %>" />
+                            </td>
+                        </tr>
+                    <% } %>
+                    </tbody>
+                </table>
+                <input type="submit" class="btn btn-danger" value="Delete" />
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>
